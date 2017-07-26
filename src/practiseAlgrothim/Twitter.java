@@ -1,10 +1,7 @@
 package practiseAlgrothim;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
@@ -97,12 +94,13 @@ public class Twitter {
 		followers.put(followerId, list);
 
 		// remove duplicate values in hashmap
-		Collection<ArrayList<Integer>> objs = followers.values();
-		for (Iterator<ArrayList<Integer>> itr = objs.iterator(); itr.hasNext();) {
-			if (Collections.frequency(objs, itr.next()) > 1) {
-				itr.remove();
-			}
-		}
+		// Collection<ArrayList<Integer>> objs = followers.values();
+		// for (Iterator<ArrayList<Integer>> itr = objs.iterator();
+		// itr.hasNext();) {
+		// if (Collections.frequency(objs, itr.next()) > 1) {
+		// itr.remove();
+		// }
+		// }
 
 	}
 

@@ -27,6 +27,41 @@ public class medianTwoArray {
 
 	}
 
+	public boolean isNumber(String s) {
+
+		// remove blank space in string s.trim();
+		String temp = s.replaceAll("[\uFEFF-\uFFFF]", "");
+
+		int count = 0;
+
+		// "959440.94f" is not a valid float number in math
+		if (temp.endsWith("f") || temp.endsWith("D"))
+			return false;
+
+		try {
+			int result = Integer.parseInt(temp);
+		} catch (java.lang.NumberFormatException e) {
+			count++;
+		}
+
+		try {
+			double dresult = Double.parseDouble(temp);
+		} catch (java.lang.NumberFormatException e) {
+			count++;
+		}
+
+		if (count == 2)
+			return false;
+
+		return true;
+
+		/*
+		 * or s = s.trim(); if (s.length() == 0) return false; if (s.matches(
+		 * "[+-]?(([0-9]*\\.?[0-9]+)|([0-9]+\\.?[0-9]*))([eE][+-]?[0-9]+)?"))
+		 * return true; else return false;
+		 */
+	}
+
 	public static void main(String[] args) {
 		medianTwoArray test = new medianTwoArray();
 
@@ -34,5 +69,10 @@ public class medianTwoArray {
 		int[] nums2 = { 1, 2 };
 
 		test.findMedianSortedArrays(nums1, nums2);
+
+		System.out.println(Integer.parseInt("0"));
+		System.out.println(Double.parseDouble("2e10"));
+		System.out.println(Double.parseDouble("959440.94f"));
+
 	}
 }

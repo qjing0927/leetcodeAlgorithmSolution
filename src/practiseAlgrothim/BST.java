@@ -45,6 +45,37 @@ public class BST {
 	 * return false; return isValidBST(root.left, minVal, root.val) &&
 	 * isValidBST(root.right, root.val, maxVal); }
 	 */
+
+	// Given a binary tree, you need to compute the length of the diameter of
+	// the tree.
+	// The diameter of a binary tree is the length of the longest path between
+	// any two nodes in a tree.
+	// This path may or may not pass through the root.
+
+	int max = 0;
+
+	public int diameterOfBinaryTree(TreeNode root) {
+
+		// basic idea is finding max level of left and right sub tree
+
+		levelofBinaryTree(root);
+		return max;
+	}
+
+	public int levelofBinaryTree(TreeNode root) {
+
+		if (root == null)
+			return 0;
+
+		int lmax = levelofBinaryTree(root.left);
+		int rmax = levelofBinaryTree(root.right);
+
+		max = Math.max(max, lmax + rmax);
+
+		return Math.max(lmax, rmax) + 1;
+
+	}
+
 }
 
 // definition of tree node

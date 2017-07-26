@@ -1,5 +1,7 @@
 package practiseAlgrothim;
 
+import java.util.Arrays;
+
 public class IntArray {
 
 	// Given an array nums, write a function to move all 0's to the end of it
@@ -30,12 +32,54 @@ public class IntArray {
 
 	}
 
+	// Given an array containing n distinct numbers taken from 0, 1, 2, ..., n,
+	// find the one that is missing from the array.
+	//
+	// For example,
+	// Given nums = [0, 1, 3] return 2.
+
+	public int missingNumber(int[] nums) {
+
+		Arrays.sort(nums);
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != i)
+				return i;
+		}
+
+		return nums.length - nums[0];
+	}
+
+	// Given a sorted array and a target value, return the index if the target
+	// is found.
+	// If not, return the index where it would be if it were inserted in order
+
+	public int searchInsert(int[] nums, int target) {
+
+		int index = 0;
+
+		for (int i = 0; i < nums.length; i++) {
+
+			if (target > nums[i])
+				index = i + 1;
+			if (target == nums[i])
+				return i;
+			if (target < nums[i])
+				break;
+		}
+
+		return index;
+	}
+
 	public static void main(String[] args) {
 		IntArray test = new IntArray();
-		int[] nums = { 0, 1, 2 };
-		test.moveZeroes(nums);
-		for (int i : nums)
-			System.out.println(i);
+		// int[] nums = { 0, 1, 2 };
+		// test.moveZeroes(nums);
+		// for (int i : nums)
+		// System.out.println(i);
+		int[] nums = { 1, 3 };
+
+		test.searchInsert(nums, 4);
 	}
 
 }

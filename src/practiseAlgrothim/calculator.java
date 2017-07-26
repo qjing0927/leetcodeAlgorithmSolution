@@ -99,7 +99,11 @@ public class calculator {
 
 		test.addTwoNumbers(l1, l2);
 
+		int i = 5;
+		System.out.println(5 % 10);
+
 	}
+
 }
 
 class ListNode {
