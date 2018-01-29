@@ -73,10 +73,6 @@ public class IntArray {
 
 	public static void main(String[] args) {
 		IntArray test = new IntArray();
-		// int[] nums = { 0, 1, 2 };
-		// test.moveZeroes(nums);
-		// for (int i : nums)
-		// System.out.println(i);
 		int[] nums = { 1, 3 };
 
 		test.searchInsert(nums, 4);

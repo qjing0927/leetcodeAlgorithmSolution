@@ -88,6 +88,31 @@ public class calculator {
 		return l1;
 	}
 
+	// reverse integer
+	public int reverse(int x) {
+
+		StringBuilder tmp = new StringBuilder(Integer.toString(x));
+		String symbol = "";
+		if (tmp.charAt(0) == '-')
+			symbol = "-";
+		tmp.reverse();
+		if (!symbol.isEmpty()) {
+			tmp.insert(0, '-');
+			tmp.deleteCharAt(tmp.length() - 1);
+		}
+
+		try {
+			int result = Integer.parseInt(tmp.toString());
+			return result;
+		} catch (Exception e) {
+			return 0;
+		}
+
+		// return Integer.valueOf(tmp.toString().trim()); or change to
+		// Long.valueOf for number out of int range
+
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		calculator test = new calculator();
@@ -102,6 +127,7 @@ public class calculator {
 		int i = 5;
 		System.out.println(5 % 10);
 
+		System.out.println(test.reverse(1534236469));
 	}
 
 }

@@ -24,10 +24,6 @@ public class largestNumber {
 		for (int i = 0; i < nums.length; i++) {
 			stringArray[i] = Integer.toString(nums[i]);
 		}
-
-		// Arrays.sort(stringArray, (String s1, String s2) -> (s2 +
-		// s1).compareTo(s1 + s2));
-
 		Arrays.sort(stringArray, new Comparator<String>() {
 			@Override
 			public int compare(String i, String j) {

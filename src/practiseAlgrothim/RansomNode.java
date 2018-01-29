@@ -33,14 +33,6 @@ public class RansomNode {
 
 			reading = ransomNode.substring(i, i + 1);
 
-			// int index = newStr.indexOf(reading);
-			//
-			// if (index > -1) {
-			// newStr = newStr.substring(0, index) + newStr.substring(index +
-			// 1,newStr.length());
-			// } else
-			// return false;
-
 			if (newStr.contains(reading))
 				newStr = newStr.replaceFirst(reading, "");
 			else
@@ -76,32 +68,32 @@ public class RansomNode {
 		}
 		return s;
 	}
-	
-	public String removeDuplicateLettersInOrder	(String s) {
-	    Stack<Character> stack = new Stack<>();
-	    int[] count = new int[26];
-	    char[] arr = s.toCharArray();
-	    for(char c : arr) {
-	        count[c-'a']++;
-	    }
-	    boolean[] visited = new boolean[26];
-	    for(char c : arr) {
-	        count[c-'a']--;
-	        if(visited[c-'a']) {
-	            continue;
-	        }
-	        while(!stack.isEmpty() && stack.peek() > c && count[stack.peek()-'a'] > 0) {
-	            visited[stack.peek()-'a'] = false;
-	            stack.pop();
-	        }
-	        stack.push(c);
-	        visited[c-'a'] = true;
-	    }
-	    StringBuilder sb = new StringBuilder();
-	    for(char c : stack) {
-	        sb.append(c);
-	    }
-	    return sb.toString();
+
+	public String removeDuplicateLettersInOrder(String s) {
+		Stack<Character> stack = new Stack<>();
+		int[] count = new int[26];
+		char[] arr = s.toCharArray();
+		for (char c : arr) {
+			count[c - 'a']++;
+		}
+		boolean[] visited = new boolean[26];
+		for (char c : arr) {
+			count[c - 'a']--;
+			if (visited[c - 'a']) {
+				continue;
+			}
+			while (!stack.isEmpty() && stack.peek() > c && count[stack.peek() - 'a'] > 0) {
+				visited[stack.peek() - 'a'] = false;
+				stack.pop();
+			}
+			stack.push(c);
+			visited[c - 'a'] = true;
+		}
+		StringBuilder sb = new StringBuilder();
+		for (char c : stack) {
+			sb.append(c);
+		}
+		return sb.toString();
 	}
 
 	public static void main(String[] args) {

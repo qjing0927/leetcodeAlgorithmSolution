@@ -76,6 +76,24 @@ public class BST {
 
 	}
 
+	// Given a binary tree, determine if it is height-balanced.
+	public boolean isBalanced(TreeNode root) {
+		if (root == null)
+			return true;
+		int differ = Math.abs((lengthofTree(root.left) - lengthofTree(root.right)));
+		if (differ > 1)
+			return false;
+		return isBalanced(root.left) && isBalanced(root.right);
+
+	}
+
+	public int lengthofTree(TreeNode root) {
+		if (root == null)
+			return 0;
+
+		return (Math.max(lengthofTree(root.left), lengthofTree(root.right)) + 1);
+	}
+
 }
 
 // definition of tree node
