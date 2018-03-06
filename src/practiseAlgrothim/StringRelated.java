@@ -1,8 +1,11 @@
 package practiseAlgrothim;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class StringRelated {
 
@@ -92,6 +95,54 @@ public class StringRelated {
 		return maxLength;
 	}
 
+	// find first non repeat character in a string
+
+	public Character firstNonRepeatChar(String string) {
+
+		Character result = null;
+		Map<Character, Integer> chars = new HashMap<Character, Integer>();
+		// iterate this string and put char as key into a map.
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+
+			if (chars.containsKey(c)) {
+				int value = chars.get(c);
+				chars.put(c, value + 1);
+			} else
+				chars.put(c, 1);
+		}
+
+		// iterate the map, first value is 0, that's it
+		for (Map.Entry<Character, Integer> entry : chars.entrySet()) {
+			if (entry.getValue() == 1)
+				result = entry.getKey();
+			return result;
+		}
+		return result;
+	}
+
+	// Given a string containing just the characters '(', ')', '{', '}', '[' and
+	// ']', determine if the input string is valid.
+	//
+	// The brackets must close in the correct order, "()" and "()[]{}" are all
+	// valid but "(]" and "([)]" are not.
+	public boolean isValid(String s) {
+
+		Stack<Character> stack = new Stack<Character>();
+
+		for (char c : s.toCharArray()) {
+			if (c == '(')
+				stack.push(')');
+			if (c == '[')
+				stack.push(']');
+			if (c == '{')
+				stack.push('}');
+			else if (stack.isEmpty() || stack.pop() != c)
+				return false;
+		}
+		return stack.isEmpty();
+	}
+
 	public static void main(String[] args) {
 
 		StringRelated test = new StringRelated();
@@ -104,6 +155,8 @@ public class StringRelated {
 
 		test.lengthOfLongestSubstring(s1);
 		test.lengthOfLongestSubstring1(s);
+		test.isValid("([)]");
+
 		System.out.println(test.lengthOfLongestSubstring3(s1));
 
 	}
