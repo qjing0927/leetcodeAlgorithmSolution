@@ -232,13 +232,119 @@ public class IntArray {
 
 	}
 
+	// Given n non-negative integers a1, a2, ..., an, where each represents a point
+	// at coordinate (i, ai). n vertical lines are drawn such that the two endpoints
+	// of line i is at (i, ai) and (i, 0). Find two lines, which together with
+	// x-axis forms a container, such that the container contains the most water.
+	// height length>=2
+	public int maxArea(int[] height) {
+
+		int i = 0;
+		int j = height.length - 1;
+		int max = Integer.MIN_VALUE;
+
+		while (i < j) {
+			int heightI = height[i];
+			int heightJ = height[j];
+			int area = 0;
+			if (heightI < heightJ) {
+				area = (j - i) * heightI;
+				++i;
+			} else {
+				area = (j - i) * heightJ;
+				--j;
+			}
+			max = Math.max(area, max);
+		}
+		return max;
+
+	}
+
+	public int removeElement(int[] nums, int val) {
+		if (nums.length == 0)
+			return 0;
+
+		int valPosition = -1;
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == val) {
+				valPosition = i;
+				break;
+			}
+		}
+		if (valPosition == -1)
+			return nums.length;
+		if (valPosition == nums.length - 1)
+			return nums.length - 1;
+
+		int nonValPosition = valPosition;
+
+		while (nonValPosition < nums.length) {
+			if (nums[nonValPosition] == val)
+				nonValPosition++;
+			else {
+				int temp = nums[nonValPosition];
+				nums[nonValPosition] = nums[valPosition];
+				nums[valPosition] = temp;
+				valPosition++;
+				nonValPosition++;
+			}
+		}
+
+		return valPosition;
+	}
+
+//Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+//Your algorithm's runtime complexity must be in the order of O(log n).
+//If the target is not found in the array, return [-1, -1].
+	public int[] findPositionOfValue(int[] a, int target) {
+		int result[] = { -1, -1 };
+
+		int left = findRangeIndex(a, 0, a.length, target, true);
+
+		if (left == a.length || a[left] != target) {
+
+			return result;
+		}
+
+		int right = findRangeIndex(a, 0, a.length, target, false);
+		result[0] = left;
+		result[1] = right;
+		return result;
+
+	}
+
+	private int findRangeIndex(int[] a, int low, int high, int target, boolean isLeft) {
+		while (low < high) {
+			int mid = low + (high - low) / 2;
+			if (isLeft) {// to find left index, we move high to the left side
+				if (a[mid] >= target) {
+					high = mid;
+				} else {
+					low = mid + 1;
+				}
+			} else {
+				if (a[mid] <= target) {// to find right index, we move low to right side
+					low = mid + 1;
+				} else {
+					high = mid;
+				}
+			}
+		}
+		return isLeft ? high : low - 1;
+	}
+
 	public static void main(String[] args) {
 		IntArray test = new IntArray();
-		int[] nums = { -1, 0, 1, 1, 2, 2, 3, 4 };
+		int[] nums = { 4, 5 };
+		int[] heights = { 1, 3, 4, 3, 5, 2 };
+		int[] arrays = { 5, 7, 7, 8, 8, 10 };
+		test.findPositionOfValue(arrays, 8);
 
 		// test.searchInsert(nums, 4);
 		// test.removeDuplicates(nums);
 		test.longestBinaryGap2(1041);
+		test.removeElement(nums, 5);
 	}
 
 }
