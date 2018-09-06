@@ -13,8 +13,6 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
-import net.coobird.thumbnailator.Thumbnails;
-
 public class CompressImages {
 	public static void main(String... args) throws IOException {
 
@@ -28,14 +26,10 @@ public class CompressImages {
 	/**
 	 * specify size and accuracy to compress an image
 	 * 
-	 * @param srcPath
-	 *            source file address JPEG, PNG, GIF, BMP and WBMP
-	 * @param desPath
-	 *            target file address
-	 * @param desFilesize
-	 *            specify image size in kb
-	 * @param accuracy
-	 *            accuracy , recurcively compress rates, suggest<0.9
+	 * @param srcPath     source file address JPEG, PNG, GIF, BMP and WBMP
+	 * @param desPath     target file address
+	 * @param desFilesize specify image size in kb
+	 * @param accuracy    accuracy , recurcively compress rates, suggest<0.9
 	 * @return
 	 */
 	public static String commpressPicForScale(String srcPath, String desPath, long desFileSize, double accuracy) {
@@ -48,7 +42,7 @@ public class CompressImages {
 		try {
 			File srcFile = new File(srcPath);
 			long srcFileSize = srcFile.length();
-			System.out.println("source image：" + srcPath + ";size：" + srcFileSize / 1024 + "kb");
+			System.out.println("source imageï¼š" + srcPath + ";sizeï¼š" + srcFileSize / 1024 + "kb");
 
 			// skip IOS 11 image format HEIF HEVC
 			String[] fileSeperatedForExtentions = srcPath.split("\\.");
@@ -58,13 +52,13 @@ public class CompressImages {
 				return null;
 			}
 
-			Thumbnails.of(srcPath).scale(1f).toFile(desPath);
+			// Thumbnails.of(srcPath).scale(1f).toFile(desPath);
 
 			commpressPicCycle(desPath, desFileSize, accuracy);
 
 			File desFile = new File(desPath);
 			System.out.println("target image:" + desPath + "; size" + desFile.length() / 1024 + "kb");
-			System.out.println("done！");
+			System.out.println("doneï¼�");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -86,7 +80,8 @@ public class CompressImages {
 		int desWidth = new BigDecimal(srcWdith).multiply(new BigDecimal(accuracy)).intValue();
 		int desHeight = new BigDecimal(srcHeigth).multiply(new BigDecimal(accuracy)).intValue();
 
-		Thumbnails.of(desPath).size(desWidth, desHeight).outputQuality(accuracy).toFile(desPath);
+		// Thumbnails.of(desPath).size(desWidth,
+		// desHeight).outputQuality(accuracy).toFile(desPath);
 		commpressPicCycle(desPath, desFileSize, accuracy);
 	}
 
@@ -115,7 +110,9 @@ public class CompressImages {
 	}
 
 	public static void compressThumbnail() throws IOException {
-		Thumbnails.of(new File("C:/Users/i325940/Documents/doc/test.jpg")).outputQuality(0.5).size(500, 500)
-				.toFile(new File("C:/Users/i325940/Documents/doc/testComThumb.jpg"));
+		// Thumbnails.of(new
+		// File("C:/Users/i325940/Documents/doc/test.jpg")).outputQuality(0.5).size(500,
+		// 500)
+		// .toFile(new File("C:/Users/i325940/Documents/doc/testComThumb.jpg"));
 	}
 }
